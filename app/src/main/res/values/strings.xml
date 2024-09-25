@@ -6,4 +6,40 @@
     <string name="cart">Cart</string>
     <string name="favorites">Favorites</string>
     <string name="profile">Profile</string>
+    <string name="orders">Orders</string>
+    <string name="address">Address</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="sign_out">Sign out</string>
+    <string name="edit">Edit</string>
+
+    <string name="intro_title">Welcome To \nClothes App</string>
+    <string name="intro_des">Application to sell all\nkinds of clothes and accessories</string>
+    <string name="title_login">Hi,\nPlease Login</string>
+
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="login">Login</string>
+    <string name="login_facebook">Facebook</string>
+    <string name="login_google">Google</string>
+    <string name="register">Create new an account? <font style="bold" color="#FF8F4C38">Register now</font> </string>
+    <string name="forgot_password">Don\'t remember Password?</string>
+    <string name="email_login_test">huy@gmail.com</string>
+    <string name="password_login_test">123huy</string>
+    <string name="save">Save</string>
+    <string name="city">City</string>
+    <string name="street_address">Street Address</string>
+    <string name="add_address">Add Address</string>
+    <string name="update">Update</string>
+    <string name="edit_address">Edit Address</string>
+    <string name="edit_payment">Edit Payment</string>
+    <string name="card_number">Card Number</string>
+    <string name="cardholder_name">Cardholder Name</string>
+    <string name="ccv">CCV</string>
+    <string name="add_payment">Add Payment</string>
+    <string name="payment">Payment</string>
+    <string name="signup">Signup</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="back_to_login">Have an account? Login now\n</string>
 </resources>

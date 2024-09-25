@@ -31,6 +31,6 @@ public class IntroFragment extends Fragment {
             if (getActivity() != null) {
                 Navigation.findNavController(getActivity(), R.id.fragmentContainerView).navigate(R.id.action_introFragment_to_loginFragment);
             }
-        }, 1000);
+        }, 2000);
     }
 }

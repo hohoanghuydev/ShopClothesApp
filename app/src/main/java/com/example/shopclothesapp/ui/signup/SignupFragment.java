@@ -75,13 +75,13 @@ public class SignupFragment extends Fragment {
     }
 
     private void addActions(View view) {
-        view.findViewById(R.id.button2).setOnClickListener(viewControl -> {
+        view.findViewById(R.id.btnSignup).setOnClickListener(viewControl -> {
             if (getActivity() != null) {
                 Navigation.findNavController(getActivity(), R.id.fragmentContainerView).navigate(R.id.action_signupFragment_to_screenMainFragment);
             }
         });
 
-        view.findViewById(R.id.textView4).setOnClickListener(viewControl -> {
+        view.findViewById(R.id.tvBackToLogin).setOnClickListener(viewControl -> {
             if (getActivity() != null) {
                 Navigation.findNavController(getActivity(), R.id.fragmentContainerView).navigate(R.id.action_signupFragment_to_loginFragment);
             }

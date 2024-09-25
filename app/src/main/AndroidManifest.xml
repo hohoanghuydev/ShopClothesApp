@@ -13,6 +13,24 @@
         android:theme="@style/Theme.ShopClothesApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.payment.edit.EditPaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.payment.add.AddPaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.address.edit.EditAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.address.add.AddAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.payment.PaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.address.AddressActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.detail.DetailActivity"
             android:exported="false" />
         <activity
