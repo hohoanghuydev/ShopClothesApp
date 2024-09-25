@@ -11,6 +11,9 @@ activity = "1.9.2"
 constraintlayout = "2.1.4"
 navigationFragment = "2.8.1"
 securityCrypto = "1.1.0-alpha06"
+googleGmsGoogleServices = "4.4.2"
+firebaseDatabase = "21.0.0"
+firebaseAuth = "23.0.0"
 
 [libraries]
 circleindicator = { module = "me.relex:circleindicator", version.ref = "circleindicator" }
@@ -28,7 +31,10 @@ navigation-fragment = { module = "androidx.navigation:navigation-fragment", vers
 navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "navigationFragment" }
 navigation-ui = { module = "androidx.navigation:navigation-ui", version.ref = "navigationFragment" }
 security-crypto = { module = "androidx.security:security-crypto", version.ref = "securityCrypto" }
+firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 

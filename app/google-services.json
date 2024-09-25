@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "1019038748881",
+    "firebase_url": "https://myclothesapp-8aeb5-default-rtdb.firebaseio.com",
+    "project_id": "myclothesapp-8aeb5",
+    "storage_bucket": "myclothesapp-8aeb5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019038748881:android:6893cf1ccd5459a36b35f0",
+        "android_client_info": {
+          "package_name": "com.example.myclothesapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC__6D1y9v9lXxYUMQjTC-fgvUgBzL8Lw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019038748881:android:3dc03fb62d4a4c586b35f0",
+        "android_client_info": {
+          "package_name": "com.example.shopclothesapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC__6D1y9v9lXxYUMQjTC-fgvUgBzL8Lw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
