@@ -1,66 +1,125 @@
 package com.example.shopclothesapp.ui.cart;
 
+import android.content.Intent;
+import android.icu.text.DecimalFormat;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.shopclothesapp.R;
+import com.example.shopclothesapp.adapters.CartAdapter;
+import com.example.shopclothesapp.data.models.CartItem;
+import com.example.shopclothesapp.data.models.ProductCart;
+import com.example.shopclothesapp.data.repositories.ProductsRepository;
+import com.example.shopclothesapp.databinding.FragmentCartBinding;
+import com.example.shopclothesapp.factories.CartViewModelFactory;
+import com.example.shopclothesapp.ui.checkout.CheckoutActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CartFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 public class CartFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public CartFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CartFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CartFragment newInstance(String param1, String param2) {
-        CartFragment fragment = new CartFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    FragmentCartBinding cartBinding;
+    CartViewModel cartViewModel;
+    ProductsRepository productsRepository;
+    CartAdapter cartAdapter;
+    List<ProductCart> carts = new ArrayList<>();
+    long totalBill = 0;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cart, container, false);
+        cartBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_cart, container, false);
+        CartViewModelFactory factory = new CartViewModelFactory(getContext());
+        cartViewModel = new ViewModelProvider(this, factory).get(CartViewModel.class);
+        cartBinding.setCartViewModel(cartViewModel);
+        cartBinding.executePendingBindings();
+        productsRepository = new ProductsRepository();
+
+        return cartBinding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        setUpRecyclerViewCart();
+        setUpObservers();
+        addEvents();
+    }
+
+    private void setUpObservers() {
+        cartViewModel.getItemCountLiveData().observe(getViewLifecycleOwner(), itemCart -> {
+            if (itemCart == 0) {
+                cartBinding.tvCartEmpty.setVisibility(View.VISIBLE);
+                cartBinding.layoutCart.setVisibility(View.GONE);
+            } else {
+                cartBinding.tvCartEmpty.setVisibility(View.GONE);
+                cartBinding.layoutCart.setVisibility(View.VISIBLE);
+            }
+            cartBinding.tvItemCount.setText(itemCart + " Item");
+        });
+
+        cartViewModel.getCartsLiveData().observe(getViewLifecycleOwner(), productCarts -> {
+            carts = productCarts;
+
+            productsRepository.getCartItem(productCarts, getContext(), cartItems -> {
+                cartAdapter.submitList(cartItems);
+                totalBill = 0;
+                int itemQuantity = 0;
+
+                for (CartItem item : cartItems) {
+                    itemQuantity += item.getProductCart().getQuantity();
+                    totalBill += (long) item.getProductCart().getQuantity() * item.getProduct().getPrice();
+                }
+
+                cartViewModel.setItemCount(itemQuantity);
+                cartViewModel.setTotal(totalBill);
+            });
+        });
+
+        cartViewModel.getTotalAmount().observe(getViewLifecycleOwner(), total -> {
+            DecimalFormat format = new DecimalFormat("#,### đ");
+            cartBinding.tvTotalAmountCart.setText(format.format(total));
+        });
+    }
+
+    private void addEvents() {
+        cartBinding.btnCartCheckout.setOnClickListener(viewButtonCart -> {
+            if (totalBill > 0) {
+                Intent intentToCheckout = new Intent(getContext(), CheckoutActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putLong("total", totalBill);
+                bundle.putSerializable("carts", (Serializable) carts);
+                intentToCheckout.putExtras(bundle);
+                startActivity(intentToCheckout);
+            } else {
+                Toast.makeText(getContext(), "Cart is empty.\nPlease buy some item", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void setUpRecyclerViewCart() {
+        if (getContext() != null) {
+            cartAdapter = new CartAdapter(getContext());
+            cartBinding.recyclerViewCart.setAdapter(cartAdapter);
+            cartBinding.recyclerViewCart.setLayoutManager(new LinearLayoutManager(getContext()));
+            DividerItemDecoration itemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+            cartBinding.recyclerViewCart.addItemDecoration(itemDecoration);
+        }
     }
 }

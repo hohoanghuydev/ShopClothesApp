@@ -6,22 +6,21 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.shopclothesapp.temp.PaymentViewModel;
-
+import com.example.shopclothesapp.ui.checkout.CheckoutViewModel;
 
 /** @noinspection unchecked*/
-public class PaymentViewModelFactory implements ViewModelProvider.Factory {
+public class CheckoutViewModelFactory implements ViewModelProvider.Factory {
     private final Context context;
 
-    public PaymentViewModelFactory(Context context) {
+    public CheckoutViewModelFactory(Context context) {
         this.context = context;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        if(modelClass.isAssignableFrom(PaymentViewModel.class)) {
-            return (T) new PaymentViewModel(context);
+        if(modelClass.isAssignableFrom(CheckoutViewModel.class)) {
+            return (T) new CheckoutViewModel(context);
         }
         throw new IllegalArgumentException("Unknown ViewModel class");
     }

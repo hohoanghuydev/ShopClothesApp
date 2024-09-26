@@ -1,4 +1,4 @@
-package com.example.shopclothesapp.temp;
+package com.example.shopclothesapp.ui.checkout;
 
 import android.content.Context;
 
@@ -9,12 +9,12 @@ import androidx.lifecycle.ViewModel;
 import com.example.shopclothesapp.data.models.Orders;
 import com.example.shopclothesapp.data.repositories.UserRepository;
 
-public class PaymentViewModel extends ViewModel {
+public class CheckoutViewModel extends ViewModel {
     private final MutableLiveData<Orders> ordersLiveData = new MutableLiveData<>();
     private final UserRepository userRepository;
     private final MutableLiveData<Boolean> stateCheckout = new MutableLiveData<>();
 
-    public PaymentViewModel(Context context) {
+    public CheckoutViewModel(Context context) {
         this.userRepository = new UserRepository(context.getApplicationContext());
     }
 

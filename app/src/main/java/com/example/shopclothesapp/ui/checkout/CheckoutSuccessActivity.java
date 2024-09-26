@@ -1,5 +1,6 @@
-package com.example.shopclothesapp.ui.address.edit;
+package com.example.shopclothesapp.ui.checkout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
 
@@ -10,20 +11,17 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.shopclothesapp.R;
+import com.example.shopclothesapp.ui.MainActivity;
 
-public class EditAddressActivity extends AppCompatActivity {
+public class CheckoutSuccessActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_edit_address);
+        setContentView(R.layout.activity_checkout_success);
 
-        findViewById(R.id.btnUpdateAddress).setOnClickListener(viewControl -> {
-            finish();
-        });
-
-        findViewById(R.id.btnBackEditAddress).setOnClickListener(viewControl -> {
+        findViewById(R.id.btnBackToHome).setOnClickListener(viewControl -> {
             finish();
         });
     }

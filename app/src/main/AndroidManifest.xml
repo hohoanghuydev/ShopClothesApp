@@ -13,6 +13,12 @@
         android:theme="@style/Theme.ShopClothesApp"
         tools:targetApi="31">
         <activity
+            android:name=".ui.checkout.CheckoutSuccessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.checkout.CheckoutActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.payment.edit.EditPaymentActivity"
             android:exported="false" />
         <activity
