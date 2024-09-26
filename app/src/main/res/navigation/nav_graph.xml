@@ -42,5 +42,9 @@
         android:id="@+id/screenMainFragment"
         android:name="com.example.shopclothesapp.ui.ScreenMainFragment"
         android:label="fragment_screen_main"
-        tools:layout="@layout/fragment_screen_main" />
+        tools:layout="@layout/fragment_screen_main" >
+        <action
+            android:id="@+id/action_screenMainFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

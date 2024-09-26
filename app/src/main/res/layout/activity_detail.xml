@@ -1,20 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.detail.DetailActivity">
+<layout>
 
-    <TextView
-        android:id="@+id/textView5"
+    <data>
+        <variable
+            name="productViewModel"
+            type="com.example.shopclothesapp.ui.detail.ProductViewModel" />
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Detail product"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        tools:context=".ui.detail.DetailActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginTop="16dp">
+
+                <ImageButton
+                    android:id="@+id/btnBackDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:background="@android:color/transparent"
+                    android:importantForAccessibility="no"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/baseline_arrow_back_ios_24" />
+
+                <ImageButton
+                    android:id="@+id/btnAddToFavorite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="24dp"
+                    android:background="@android:color/transparent"
+                    android:importantForAccessibility="no"
+                    android:padding="8dp"
+                    app:srcCompat="@drawable/baseline_favorite_border_24" />
+
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:paddingBottom="64dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".ui.activity.DetailActivity">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPagerSlideProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <me.relex.circleindicator.CircleIndicator3
+                    android:id="@+id/circleIndicatorSlide"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/viewPagerSlideProduct" />
+
+                <TextView
+                    android:id="@+id/tvProName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@{productViewModel.productLiveData.name}"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/circleIndicatorSlide" />
+
+                <TextView
+                    android:id="@+id/tvProPrice"
+                    formatedPrice="@{productViewModel.productLiveData.price}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProName" />
+
+                <TextView
+                    android:id="@+id/tvSelectSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/select_size"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvProPrice" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroupSize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSelectSize" />
+
+                <TextView
+                    android:id="@+id/tvDescriptionProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{productViewModel.productLiveData.description}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/radioGroupSize" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <Button
+            android:id="@+id/btnAddToCart"
+            android:layout_width="200dp"
+            android:layout_height="55dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:paddingHorizontal="32dp"
+            android:text="@string/add_to_cart"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSubQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rectangle_radius"
+                android:elevation="8dp"
+                android:onClick="@{productViewModel::subtractQuantity}"
+                android:padding="0dp"
+                android:text="-"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/edtProductQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rectangle_radius"
+                android:ems="10"
+                android:focusable="false"
+                android:gravity="center"
+                android:inputType="number"
+                android:text="@={productViewModel.quantityLiveData}"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnAddQuantity"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rectangle_radius"
+                android:elevation="8dp"
+                android:onClick="@{productViewModel::addQuantity}"
+                android:padding="0dp"
+                android:text="+"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </FrameLayout>
+</layout>
