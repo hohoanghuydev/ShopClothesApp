@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="categoryViewModel"
+            type="com.example.shopclothesapp.ui.category.CategoryViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.category.CategoryActivity">
+
+        <ImageButton
+            android:id="@+id/btnBackCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="63dp"
+            android:background="@drawable/bg_image_circle"
+            android:importantForAccessibility="no"
+            android:padding="12dp"
+            android:src="@drawable/baseline_arrow_back_ios_24" />
+
+        <include
+            android:id="@+id/layoutCategory"
+            layout="@layout/layout_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</layout>

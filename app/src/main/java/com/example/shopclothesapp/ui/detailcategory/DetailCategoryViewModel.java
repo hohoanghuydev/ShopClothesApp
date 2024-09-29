@@ -1,4 +1,4 @@
-package com.example.shopclothesapp.temp;
+package com.example.shopclothesapp.ui.detailcategory;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.shopclothesapp.data.models.Category;
-import com.example.shopclothesapp.temp.DetailCategoryViewModel;
+import com.example.shopclothesapp.ui.detailcategory.DetailCategoryViewModel;
 
 public class DetailCategoryViewModelFactory implements ViewModelProvider.Factory {
     private final Category category;

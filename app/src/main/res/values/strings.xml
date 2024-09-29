@@ -66,4 +66,8 @@
     <string name="order_place_successfully">Order place successfully</string>
     <string name="thanks_for_your_orders">Thanks for your orders</string>
     <string name="back_to_homepage">Back to Homepage</string>
+    <string name="all_products">All Products</string>
+    <string name="see_all">See all</string>
+    <string name="the_most_popular_nclothes_today">The most popular\nclothes today</string>
+    <string name="not_found_product">Not found product</string>
 </resources>
